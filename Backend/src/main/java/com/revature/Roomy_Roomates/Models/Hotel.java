@@ -35,7 +35,7 @@ public class Hotel{
 
     public Hotel(){}
 
-    public Hotel(int hotelID, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
+    public Hotel(int hotelId, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
             String hotelEmail, String hotelImage, Owner owner) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
