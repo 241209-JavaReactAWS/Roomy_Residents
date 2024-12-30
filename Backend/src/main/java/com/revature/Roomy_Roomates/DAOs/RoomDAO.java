@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoomDAO extends JpaRepository<Room, Integer> {
     List<Room> findByStatus(Status status);
-
-
+    List<Room> findByHotelAndStatus(Hotel hotel, Status status);
+    List<Room> findByHotel(Hotel hotel);
+    List<Room> findByRoomType(String roomType);
+    List<Room> findByRoomTypeAndStatus(String roomType, Status status);
+    List<Room> findByRoomTypeAndHotel(String roomType, Hotel hotel);
+    List<Room> findByRoomTypeAndStatusAndHotel(String roomType, Status status, Hotel hotel);
 }

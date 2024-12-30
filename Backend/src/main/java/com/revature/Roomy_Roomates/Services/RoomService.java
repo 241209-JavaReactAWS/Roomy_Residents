@@ -42,4 +42,27 @@ public class RoomService {
         return roomDAO.findByStatus(status);
     }
 
+    public List<Room> getRoomByHotel(Hotel hotel) {
+        return roomDAO.findByHotel(hotel);
+    }
+
+    public List<Room> getRoomByRoomType(String roomType) {
+        return roomDAO.findByRoomType(roomType);
+    }
+
+    public List<Room> getRoomByHotelAndStatus(Hotel hotel, Status status) {
+        return roomDAO.findByHotelAndStatus(hotel, status);
+    }
+
+    public List<Room> getRoomByRoomTypeAndStatus(String roomType, Status status) {
+        return roomDAO.findByRoomTypeAndStatus(roomType, status);
+    }
+
+    public List<Room> getRoomByRoomTypeAndHotel(String roomType, Hotel hotel) {
+        return roomDAO.findByRoomTypeAndHotel(roomType, hotel);
+    }
+
+    public List<Room> getRoomByRoomTypeAndStatusAndHotel(String roomType, Status status, Hotel hotel) {
+        return roomDAO.findByRoomTypeAndStatusAndHotel(roomType, status, hotel);
+    }
 }
