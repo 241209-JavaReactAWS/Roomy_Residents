@@ -2,7 +2,7 @@ package com.revature.Roomy_Roomates.Services;
 
 import com.revature.Roomy_Roomates.DAOs.RoomDAO;
 import com.revature.Roomy_Roomates.Models.Room;
-import com.revature.Roomy_Roomates.Models.Room;
+import com.revature.Roomy_Roomates.Models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +38,8 @@ public class RoomService {
         roomDAO.deleteById(roomId);
     }
 
-    public Status getRoomByAvailability(Status status) {
-        return roomDAO.getRoomByAvailability();
+    public List<Room> getRoomByAvailability(Status status) {
+        return roomDAO.findByStatus(status);
     }
 
 }
