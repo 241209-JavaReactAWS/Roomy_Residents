@@ -27,9 +27,9 @@ public class Room {
 
     public Room() {}
 
-    public Room(int room_id, int hotel_id, String room_type, Status status, String image) {
+    public Room(int room_id, Hotel hotel, String room_type, Status status, String image) {
         this.room_id = room_id;
-        this.hotel_id = hotel_id;
+        this.hotel= hotel;
         this.room_type = room_type;
         this.status = status;
         this.image = image;
