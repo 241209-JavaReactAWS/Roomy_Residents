@@ -32,11 +32,11 @@ public class HotelService {
         return hotelDAO.save(hotel);
     }
 
-    public Hotel updateNewHotel(Hotel hotel){
+    public Hotel updateHotel(Hotel hotel){
         return hotelDAO.save(hotel);
     }
 
-    public void deleteBook(int hotelId)  {
+    public void deleteHotel(int hotelId)  {
 
         hotelDAO.deleteById(hotelId);
     }
