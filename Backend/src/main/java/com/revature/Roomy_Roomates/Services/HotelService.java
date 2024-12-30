@@ -32,13 +32,30 @@ public class HotelService {
         return hotelDAO.save(hotel);
     }
 
-    public Hotel updateHotel(Hotel hotel){
-        return hotelDAO.save(hotel);
+    public Hotel updateHotel(Hotel updatedHotel, int hotelId){
+        return hotelDAO.findById(hotelId)
+            .map(existingHotel -> {
+                existingHotel.setHotelName(updatedHotel.getHotelName());
+                existingHotel.setHotelAddress(updatedHotel.getHotelAddress());
+                existingHotel.setHotelZipcode(updatedHotel.getHotelZipcode());
+                existingHotel.setHotelEmail(updatedHotel.getHotelEmail());
+                existingHotel.setHotelPhoneNumber(updatedHotel.getHotelPhoneNumber());
+                existingHotel.setHotelImage(updatedHotel.getHotelImage());
+                return hotelDAO.save(existingHotel);
+            })
+            .orElseThrow(() -> new IllegalArgumentException("Hotel not found"));
     }
 
-    public void deleteHotel(int hotelId)  {
+    public void deleteHotel(Hotel hotel, int hotelId)  {
 
-        hotelDAO.deleteById(hotelId);
+        if(hotelDAO.existsById(hotel.getHotelId())){
+            hotelDAO.deleteById(hotelId);
+        }
+        else {
+            throw new IllegalArgumentException("Hotel not found");
+        }        
+
+        
     }
     
 }
