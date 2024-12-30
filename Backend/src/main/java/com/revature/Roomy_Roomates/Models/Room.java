@@ -45,8 +45,11 @@ public class Room {
         return roomId;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public Hotel getHotel() {
+        return hotel;
+    }
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     public String getImage() {
