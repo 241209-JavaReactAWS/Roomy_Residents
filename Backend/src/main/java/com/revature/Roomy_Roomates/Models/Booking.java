@@ -19,7 +19,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "room_id", referencedColumnName = "room_id", nullable = false)
-    private com.revature.Roomy_Roomates.entities.Rooms room_id;
+    private Room room;
 
     @Column(name = "datecheckin",nullable = false)
     private String dateCheckIn;
@@ -39,7 +39,23 @@ public class Booking {
     public Booking() {
     }
 
+    public Booking(Integer userId, Room room, String dateCheckIn, String dateCheckOut, BigDecimal totalCost, String bookingStatus) {
+        this.userId = userId;
+        this.room = room;
+        this.dateCheckIn = dateCheckIn;
+        this.dateCheckOut = dateCheckOut;
+        this.totalCost = totalCost;
+        this.bookingStatus = bookingStatus;
 
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     public Integer getBookingId() {
         return bookingId;
@@ -57,13 +73,6 @@ public class Booking {
         this.userId = userId;
     }
 
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
 
     public String getDateCheckIn() {
         return dateCheckIn;
