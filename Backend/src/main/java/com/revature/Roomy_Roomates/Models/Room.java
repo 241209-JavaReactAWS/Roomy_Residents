@@ -26,7 +26,7 @@ public class Room {
     private String description;
 
     @Column(name = "status", nullable = false)
-    private Status status;
+    private boolean status;
 
     @Column(name = "image", nullable = false)
     private String image;
@@ -34,7 +34,7 @@ public class Room {
     public Room() {
     }
 
-    public Room(int room_id, Hotel hotel, String room_type, Status status, String image) {
+    public Room(int room_id, Hotel hotel, String room_type, boolean status, String image) {
         this.roomId = room_id;
         this.hotel = hotel;
         this.roomType = room_type;

@@ -30,15 +30,25 @@ public class RoomService {
         return roomDAO.save(room);
     }
 
-    public Room updateRoom(Room room){
-        return roomDAO.save(room);
+    public Room updateRoom(int roomid, Room newRoom) {
+    return roomDAO.findById(roomId)
+            .map(oldRoom -> {
+        oldRoom.setHotel(newRoom.getHotelName());
+        oldRoom.setHotelAddress(newRoom.getHotelAddress());
+        oldRoom.setHotelZipcode(newRoom.getHotelZipcode());
+        oldRoom.setHotelEmail(newRoom.getHotelEmail());
+        oldRoom.setHotelPhoneNumber(newRoom.getHotelPhoneNumber());
+        oldRoom.setHotelImage(newRoom.getHotelImage());
+        return hotelDAO.save(newRoom);
+    })
+            .orElseThrow(() -> new IllegalArgumentException("Hotel not found"));
     }
 
     public void deleteRoom(int roomId)  {
         roomDAO.deleteById(roomId);
     }
 
-    public List<Room> getRoomByAvailability(Status status) {
+    public List<Room> getRoomByAvailability(boolean status) {
         return roomDAO.findByStatus(status);
     }
 
@@ -50,11 +60,11 @@ public class RoomService {
         return roomDAO.findByRoomType(roomType);
     }
 
-    public List<Room> getRoomByHotelAndStatus(Hotel hotel, Status status) {
+    public List<Room> getRoomByHotelAndStatus(Hotel hotel, boolean status) {
         return roomDAO.findByHotelAndStatus(hotel, status);
     }
 
-    public List<Room> getRoomByRoomTypeAndStatus(String roomType, Status status) {
+    public List<Room> getRoomByRoomTypeAndStatus(String roomType, boolean status) {
         return roomDAO.findByRoomTypeAndStatus(roomType, status);
     }
 
