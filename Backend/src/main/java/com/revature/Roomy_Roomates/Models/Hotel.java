@@ -2,12 +2,16 @@ package com.revature.Roomy_Roomates.Models;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name="hotels")
 public class Hotel{
+
     @Id
+    @Column(name = "hotel_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int hotelID;
+    private Integer hotelID;
     
     @Column(name="hotel_name")
     private String hotelName;
@@ -16,7 +20,7 @@ public class Hotel{
     private String hotelAddress;
     
     @Column(name="hotel_zipcode")
-    private int hotelZipcode;
+    private Integer hotelZipcode;
     
     @Column(name="hotel_phone_number")
     private String hotelPhoneNumber;
@@ -27,23 +31,23 @@ public class Hotel{
     @Column(name = "hotel_image")
     private String hotelImage;
 
-    @OneToMany
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     private Owner owner;
 
     public Hotel(){}
 
-    public Hotel(int hotelID, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
-            String hotelEmail, String hotelImage, Owner owner) {
-        this.hotelID = hotelID;
-        this.hotelName = hotelName;
-        this.hotelAddress = hotelAddress;
-        this.hotelZipcode = hotelZipcode;
-        this.hotelPhoneNumber = hotelPhoneNumber;
-        this.hotelEmail = hotelEmail;
-        this.hotelImage = hotelImage;
-        this.owner = owner;
-    }
+//    public Hotel(int hotelID, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
+//            String hotelEmail, String hotelImage, Owner owner) {
+//        this.hotelID = hotelID;
+//        this.hotelName = hotelName;
+//        this.hotelAddress = hotelAddress;
+//        this.hotelZipcode = hotelZipcode;
+//        this.hotelPhoneNumber = hotelPhoneNumber;
+//        this.hotelEmail = hotelEmail;
+//        this.hotelImage = hotelImage;
+//        this.owner = null;
+//    }
 
     public int getHotelID() {
         return hotelID;
@@ -102,7 +106,7 @@ public class Hotel{
     }
 
     public Owner getOwner() {
-        return owner;
+        return this.owner;
     }
 
     public void setOwner(Owner owner) {
