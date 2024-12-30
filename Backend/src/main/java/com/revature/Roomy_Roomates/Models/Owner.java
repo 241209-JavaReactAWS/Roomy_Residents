@@ -22,6 +22,13 @@ public class Owner {
     public Owner() {
     }
 
+    public Owner(Integer ownerId, String buisnessName, String buisnessEmail, Integer buisnessPhoneNumber) {
+        this.ownerId = ownerId;
+        this.buisnessName = buisnessName;
+        this.buisnessEmail = buisnessEmail;
+        this.buisnessPhoneNumber = buisnessPhoneNumber;
+    }
+
     public Integer getOwnerId() {
         return ownerId;
     }

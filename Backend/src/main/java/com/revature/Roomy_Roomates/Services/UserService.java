@@ -85,11 +85,8 @@ public class UserService {
         return false;
     }
 
-    public User updateUserInformationWithPassword(User givenUser) throws AlreadyExists,NotInDatabase, Unauthorized,ImproperFormat{
+    public User updateUserInformationWithAuthentication(User givenUser) throws AlreadyExists,NotInDatabase, Unauthorized,ImproperFormat{
         if(!PasswordEquals(givenUser) && givenUser.getRole() != Roles.ADMIN) throw new Unauthorized();
-        if(givenUser.getPassword().trim().length() < passwordMinLength) throw new ImproperFormat();
-        if(givenUser.getUsername().trim().length() < usernameMinLength) throw new ImproperFormat();
-        if(userDAO.findUserByUsername(givenUser.getUsername().trim()).isPresent()) throw new AlreadyExists();
         Optional<User> userSearch = userDAO.findById(givenUser.getUserId());
         if(userSearch.isEmpty()) throw new NotInDatabase();
 
@@ -98,6 +95,9 @@ public class UserService {
             user.setRole(givenUser.getRole());;
         }
 
+        if(givenUser.getUsername().trim().length() >= usernameMinLength &&
+                userDAO.findUserByUsername(givenUser.getUsername().trim()).isEmpty())
+                user.setUsername(givenUser.getUsername());
         if(!user.getFirstName().isEmpty()) user.setFirstName(givenUser.getFirstName());
         if(!user.getLastName().isEmpty()) user.setLastName(givenUser.getLastName());
         if(!user.getEmail().isEmpty()) user.setEmail(givenUser.getEmail());
@@ -107,9 +107,7 @@ public class UserService {
         return userDAO.save(user);
     }
 
-    public User updateUserInformationWithoutPassword(User givenUser) throws AlreadyExists,NotInDatabase, Unauthorized,ImproperFormat{
-        if(givenUser.getPassword().trim().length() < passwordMinLength) throw new ImproperFormat();
-        if(givenUser.getUsername().trim().length() < usernameMinLength) throw new ImproperFormat();
+    public User updateUserInformationWithoutAuthentication(User givenUser) throws AlreadyExists,NotInDatabase, Unauthorized,ImproperFormat{
         if(userDAO.findUserByUsername(givenUser.getUsername().trim()).isPresent()) throw new AlreadyExists();
         Optional<User> userSearch = userDAO.findById(givenUser.getUserId());
         if(userSearch.isEmpty()) throw new NotInDatabase();
@@ -118,6 +116,10 @@ public class UserService {
         if(givenUser.getRole() == Roles.ADMIN){
             user.setRole(givenUser.getRole());;
         }
+        if(givenUser.getUsername().trim().length() >= usernameMinLength &&
+                userDAO.findUserByUsername(givenUser.getUsername().trim()).isEmpty())
+                user.setUsername(givenUser.getUsername());
+        if(user.getPassword().trim().length() >= passwordMinLength) user.setPassword(givenUser.getPassword());
 
         if(!user.getFirstName().isEmpty()) user.setFirstName(givenUser.getFirstName());
         if(!user.getLastName().isEmpty()) user.setLastName(givenUser.getLastName());
