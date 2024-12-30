@@ -19,8 +19,8 @@ public class RoomService {
     @Autowired
     public RoomService(RoomDAO roomDAO) {this.roomDAO = roomDAO;}
 
-    public Optional<Hotel> getRoomById(int roomId){
-        return roomdaoDAO.findById(roomId);
+    public Optional<Room> getRoomById(int roomId){
+        return roomDAO.findById(roomId);
     }
 
     public List<Room> getAllRooms(){
@@ -31,7 +31,7 @@ public class RoomService {
     }
 
     public Room updateRoom(Room room){
-        return hotelDAO.save(room);
+        return roomDAO.save(room);
     }
 
     public void deleteRoom(int roomId)  {
