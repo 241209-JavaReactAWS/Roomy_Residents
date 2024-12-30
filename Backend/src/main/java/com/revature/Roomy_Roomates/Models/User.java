@@ -3,6 +3,7 @@ package com.revature.Roomy_Roomates.Models;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +28,15 @@ public class User {
 
     @Temporal(TemporalType.DATE)
     private Date date;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Favourite",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name="player_id")
+
+    )
+    private Set<Hotel> favorites;
 
     public User() {
     }
@@ -93,5 +103,13 @@ public class User {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Set<Hotel> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Hotel> favorites) {
+        this.favorites = favorites;
     }
 }
