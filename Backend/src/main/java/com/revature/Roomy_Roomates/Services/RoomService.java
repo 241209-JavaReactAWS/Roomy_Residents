@@ -33,7 +33,7 @@ public class RoomService {
     public Room updateRoom(int roomid, Room newRoom) {
     return roomDAO.findById(roomId)
             .map(oldRoom -> {
-        oldRoom.setHotel(newRoom.getHotelName());
+        oldRoom.setHotel(newRoom.getRoomName());
         oldRoom.setHotelAddress(newRoom.getHotelAddress());
         oldRoom.setHotelZipcode(newRoom.getHotelZipcode());
         oldRoom.setHotelEmail(newRoom.getHotelEmail());
