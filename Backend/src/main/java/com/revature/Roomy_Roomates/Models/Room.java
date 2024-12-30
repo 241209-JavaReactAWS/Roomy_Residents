@@ -26,7 +26,7 @@ public class Room {
     private String description;
 
     @Column(name = "status", nullable = false)
-    private Status status;
+    private boolean status;
 
     @Column(name = "image", nullable = false)
     private String image;
@@ -34,54 +34,10 @@ public class Room {
     public Room() {
     }
 
-    public Room(Integer roomId, Hotel hotel, String roomType, String description, Status status, String image) {
-        this.roomId = roomId;
+    public Room(int room_id, Hotel hotel, String room_type, boolean status, String image) {
+        this.roomId = room_id;
         this.hotel = hotel;
-        this.roomType = roomType;
-        this.description = description;
-        this.status = status;
-        this.image = image;
-    }
-
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
+        this.roomType = room_type;
         this.status = status;
     }
 
@@ -92,4 +48,26 @@ public class Room {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public boolean isStatus() {
+        return status;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+
 }

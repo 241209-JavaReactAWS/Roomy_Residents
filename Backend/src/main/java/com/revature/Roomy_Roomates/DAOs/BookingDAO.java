@@ -13,8 +13,8 @@ import java.util.List;
 public interface BookingDAO extends JpaRepository <Booking, Integer>{
     List<Booking> findByUserId(Integer userId);
     @Query("SELECT COUNT(b) FROM Bookings b WHERE Room_id = :roomId " +
-            "AND dateCheckOut >= :dateCheckIn " +
-            "AND dateCheckIn < :dateCheckOut")
+            "AND b.dateCheckOut > :dateCheckIn " +
+            "AND b.dateCheckIn < :dateCheckOut")
     Integer checkAvailability(
             @Param("roomId")Integer roomId,
             @Param("dateCheckIn") LocalDateTime dateCheckIn,
