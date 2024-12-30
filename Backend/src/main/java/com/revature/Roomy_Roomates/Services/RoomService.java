@@ -38,4 +38,8 @@ public class RoomService {
         roomDAO.deleteById(roomId);
     }
 
+    public Status getRoomByAvailability(Status status) {
+        return roomDAO.getRoomByAvailability();
+    }
+
 }

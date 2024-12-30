@@ -1,10 +1,11 @@
 package com.revature.Roomy_Roomates.DAOs;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.revature.Roomy_Roomates.Models.Room;
+import com.revature.Roomy_Roomates.Models.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoomDAO extends JpaRepository<Room, Integer> {
+    List<Room> findByStatus(Status status);
 
 }
