@@ -7,11 +7,17 @@ import jakarta.persistence.*;
 public class Owner {
 
     @Id
-    @Column(name = "ownerId")
+    @Column(name = "owner_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ownerId;
+
+    @Column(name = "buisness_name")
     private String buisnessName;
+
+    @Column(name = "buisness_email")
     private String buisnessEmail;
+
+    @Column(name = "buisness_phone_number")
     private Integer buisnessPhoneNumber;
 
     public Owner() {
