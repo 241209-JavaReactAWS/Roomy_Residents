@@ -26,7 +26,7 @@ CREATE TABLE Hotels (
     Owner_id BIGINT NOT NULL REFERENCES Users(User_id) ON DELETE CASCADE,
     hotel_name VARCHAR(255) NOT NULL,
     hotel_Address TEXT NOT NULL,
-    hotel_zipcode VARCHAR(20),
+    hotel_zipcode INT NOT NULL,
     hotel_phone_number VARCHAR(15),
     Hotel_email VARCHAR(255),
     Rating DECIMAL(3, 2)
