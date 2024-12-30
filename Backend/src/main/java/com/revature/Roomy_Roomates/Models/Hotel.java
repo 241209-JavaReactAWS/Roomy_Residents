@@ -37,17 +37,17 @@ public class Hotel{
 
     public Hotel(){}
 
-//    public Hotel(int hotelID, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
-//            String hotelEmail, String hotelImage, Owner owner) {
-//        this.hotelID = hotelID;
-//        this.hotelName = hotelName;
-//        this.hotelAddress = hotelAddress;
-//        this.hotelZipcode = hotelZipcode;
-//        this.hotelPhoneNumber = hotelPhoneNumber;
-//        this.hotelEmail = hotelEmail;
-//        this.hotelImage = hotelImage;
-//        this.owner = null;
-//    }
+    public Hotel(int hotelID, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
+            String hotelEmail, String hotelImage, Owner owner) {
+        this.hotelID = hotelID;
+        this.hotelName = hotelName;
+        this.hotelAddress = hotelAddress;
+        this.hotelZipcode = hotelZipcode;
+        this.hotelPhoneNumber = hotelPhoneNumber;
+        this.hotelEmail = hotelEmail;
+        this.hotelImage = hotelImage;
+        this.owner = owner;
+    }
 
     public int getHotelID() {
         return hotelID;

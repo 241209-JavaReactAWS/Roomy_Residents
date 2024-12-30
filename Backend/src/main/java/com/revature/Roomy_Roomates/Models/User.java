@@ -43,6 +43,18 @@ public class User {
     public User() {
     }
 
+    public User(Integer userId, Owner ownerId, String username, String password, String firstName, String lastName, String email, Date date, Set<Hotel> favorites) {
+        this.userId = userId;
+        this.ownerId = ownerId;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.date = date;
+        this.favorites = favorites;
+    }
+
     public Integer getUserId() {
         return userId;
     }

@@ -15,14 +15,15 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer room_id;
 
-    @Column(name = "hotel_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
     @Column(name = "room_type", nullable = false)
     private String room_type;
 
     @Column(name = "status", nullable = false)
-    private com.revature.Roomy_Roomates.entities.Status status;
+    private Status status;
 
     @Column(name = "image", nullable = false)
     private String image;
@@ -30,7 +31,7 @@ public class Room {
     public Room() {
     }
 
-    public Room(int room_id, Hotel hotel, String room_type, com.revature.Roomy_Roomates.entities.Status status, String image) {
+    public Room(int room_id, Hotel hotel, String room_type, Status status, String image) {
         this.room_id = room_id;
         this.hotel = hotel;
         this.room_type = room_type;

@@ -8,7 +8,6 @@ public class Owner {
 
     @Id
     @Column(name = "owner_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ownerId;
 
     @Column(name = "buisness_name")
