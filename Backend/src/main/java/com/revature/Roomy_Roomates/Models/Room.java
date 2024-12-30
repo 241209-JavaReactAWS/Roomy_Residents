@@ -41,6 +41,14 @@ public class Room {
         this.status = status;
     }
 
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
     public String getImage() {
         return image;
     }

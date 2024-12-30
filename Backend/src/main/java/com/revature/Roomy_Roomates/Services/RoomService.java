@@ -30,19 +30,19 @@ public class RoomService {
         return roomDAO.save(room);
     }
 
-    public Room updateRoom(int roomid, Room newRoom) {
-    return roomDAO.findById(roomId)
-            .map(oldRoom -> {
-        oldRoom.setHotel(newRoom.getRoomName());
-        oldRoom.setHotelAddress(newRoom.getHotelAddress());
-        oldRoom.setHotelZipcode(newRoom.getHotelZipcode());
-        oldRoom.setHotelEmail(newRoom.getHotelEmail());
-        oldRoom.setHotelPhoneNumber(newRoom.getHotelPhoneNumber());
-        oldRoom.setHotelImage(newRoom.getHotelImage());
-        return hotelDAO.save(newRoom);
-    })
-            .orElseThrow(() -> new IllegalArgumentException("Hotel not found"));
-    }
+//    public Room updateRoom(int roomId, Room newRoom) {
+//    return roomDAO.findById(roomId)
+//            .map(oldRoom -> {
+//        oldRoom.setHotel(newRoom.getRoomName());
+//        oldRoom.setHotelAddress(newRoom.getHotelAddress());
+//        oldRoom.setHotelZipcode(newRoom.getHotelZipcode());
+//        oldRoom.setHotelEmail(newRoom.getHotelEmail());
+//        oldRoom.setHotelPhoneNumber(newRoom.getHotelPhoneNumber());
+//        oldRoom.setHotelImage(newRoom.getHotelImage());
+//        return hotelDAO.save(newRoom);
+//    })
+//            .orElseThrow(() -> new IllegalArgumentException("Hotel not found"));
+//    }
 
     public void deleteRoom(int roomId)  {
         roomDAO.deleteById(roomId);
@@ -72,7 +72,7 @@ public class RoomService {
         return roomDAO.findByRoomTypeAndHotel(roomType, hotel);
     }
 
-    public List<Room> getRoomByRoomTypeAndStatusAndHotel(String roomType, Status status, Hotel hotel) {
+    public List<Room> getRoomByRoomTypeAndStatusAndHotel(String roomType, boolean status, Hotel hotel) {
         return roomDAO.findByRoomTypeAndStatusAndHotel(roomType, status, hotel);
     }
 }
