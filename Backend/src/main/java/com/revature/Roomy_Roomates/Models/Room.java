@@ -22,6 +22,9 @@ public class Room {
     @Column(name = "room_type", nullable = false)
     private String room_type;
 
+    @Column(name = "description", nullable = false)
+    private String description;
+
     @Column(name = "status", nullable = false)
     private Status status;
 
