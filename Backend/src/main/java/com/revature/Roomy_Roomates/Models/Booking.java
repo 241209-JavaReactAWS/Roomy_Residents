@@ -39,6 +39,14 @@ public class Booking {
     public Booking() {
     }
 
+    public Booking(Integer userId, Room room_id, String dateCheckIn, String dateCheckOut, BigDecimal totalCost, String bookingStatus) {
+        this.userId = userId;
+        this.room_id = room_id;
+        this.dateCheckIn = dateCheckIn;
+        this.dateCheckOut = dateCheckOut;
+        this.totalCost = totalCost;
+        this.bookingStatus = bookingStatus;
+    }
 
 
     public Integer getBookingId() {
@@ -103,5 +111,13 @@ public class Booking {
 
     public void setAtTime(LocalDateTime atTime) {
         this.atTime = atTime;
+    }
+
+    public Room getRoom() {
+        return room_id;
+    }
+
+    public void setRoom(Room room_id) {
+        this.room_id = room_id;
     }
 }
