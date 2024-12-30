@@ -19,7 +19,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "room_id", referencedColumnName = "room_id", nullable = false)
-    private Room room_id;
+    private Room room;
 
     @Column(name = "datecheckin",nullable = false)
     private String dateCheckIn;
@@ -57,12 +57,12 @@ public class Booking {
         this.userId = userId;
     }
 
-    public Room getRoomId() {
-        return room_id;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomId(Room roomId) {
-        this.room_id = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public String getDateCheckIn() {

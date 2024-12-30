@@ -35,7 +35,11 @@ public class BookingService {
         bookingDAO.deleteById(bookingId);
         return booking;
     }
-
+    /**************** CHECK ROOM IS AVAILABLE  ****************/
+    public boolean isRoomAvailable (Integer roomId, LocalDateTime dateCheckIn, LocalDateTime dateCheckOut){
+        Integer count = bookingDAO.checkAvailability(roomId, dateCheckIn, dateCheckOut);
+        return count == 0;
+    }
      /************************ CREATE BOOKING BY USER ID ******************/
     public Booking createBooking(   Integer user_id,
                                     Room room,
@@ -43,12 +47,11 @@ public class BookingService {
                                     String datCheckOut,
                                     BigDecimal totalCost,
                                     String bookingStatus){
-
-
-        if (user_id== null || room == null || dateCheckIn == null || datCheckOut == null || totalCost == null || bookingStatus == null) {
-            throw new IllegalArgumentException("Booking cannot be null");
+        if (!isRoomAvailable(room.getRoom_Id(), LocalDateTime.parse(dateCheckIn), LocalDateTime.parse(datCheckOut))) {
+            throw new IllegalArgumentException("Room is not available");
         }
-        Booking booking = new Booking(user_id, room, dateCheckIn, datCheckOut, totalCost, bookingStatus);
+
+        Booking booking = new Booking(userId, room, dateCheckIn, datCheckOut, totalCost, bookingStatus);
         booking.setAtTime(LocalDateTime.now());
         return bookingDAO.save(booking);
     }
