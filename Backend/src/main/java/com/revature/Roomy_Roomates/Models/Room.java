@@ -34,20 +34,37 @@ public class Room {
     public Room() {
     }
 
-    public Room(int room_id, Hotel hotel, String room_type, Status status, String image) {
-        this.room_id = room_id;
+    public Room(Integer roomId, Hotel hotel, String roomType, String description, Status status, String image) {
+        this.roomId = roomId;
         this.hotel = hotel;
-        this.room_type = room_type;
+        this.roomType = roomType;
+        this.description = description;
         this.status = status;
         this.image = image;
     }
 
-    public Integer getRoom_id() {
-        return room_id;
+    public Integer getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(Integer room_id) {
-        this.room_id = room_id;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Hotel getHotel() {
@@ -58,13 +75,7 @@ public class Room {
         this.hotel = hotel;
     }
 
-    public String getRoom_type() {
-        return room_type;
-    }
 
-    public void setRoom_type(String room_type) {
-        this.room_type = room_type;
-    }
 
     public Status getStatus() {
         return status;

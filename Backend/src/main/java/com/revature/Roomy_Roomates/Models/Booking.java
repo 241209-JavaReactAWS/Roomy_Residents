@@ -39,7 +39,14 @@ public class Booking {
     public Booking() {
     }
 
-
+    public Booking(Integer userId, Room room, String dateCheckIn, String dateCheckOut, BigDecimal totalCost, String bookingStatus) {
+        this.userId = userId;
+        this.room = room;
+        this.dateCheckIn = dateCheckIn;
+        this.dateCheckOut = dateCheckOut;
+        this.totalCost = totalCost;
+        this.bookingStatus = bookingStatus;
+    }
 
     public Integer getBookingId() {
         return bookingId;

@@ -41,13 +41,13 @@ public class BookingService {
         return count == 0;
     }
      /************************ CREATE BOOKING BY USER ID ******************/
-    public Booking createBooking(   Integer user_id,
+    public Booking createBooking(   Integer userId,
                                     Room room,
                                     String dateCheckIn,
                                     String datCheckOut,
                                     BigDecimal totalCost,
                                     String bookingStatus){
-        if (!isRoomAvailable(room.getRoom_Id(), LocalDateTime.parse(dateCheckIn), LocalDateTime.parse(datCheckOut))) {
+        if (!isRoomAvailable(room.getRoomId(), LocalDateTime.parse(dateCheckIn), LocalDateTime.parse(datCheckOut))) {
             throw new IllegalArgumentException("Room is not available");
         }
 
