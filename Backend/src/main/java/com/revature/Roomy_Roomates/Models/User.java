@@ -14,8 +14,10 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "owner_id")
-    private Integer ownerId = -1;
+    @OneToOne
+    @JoinColumn(name = "owner_id")
+    private Owner ownerId = null;
+
     private String username;
     private String password;
 
@@ -29,7 +31,7 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "Favourite",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -41,6 +43,18 @@ public class User {
     public User() {
     }
 
+    public User(Integer userId, Owner ownerId, String username, String password, String firstName, String lastName, String email, Date date, Set<Hotel> favorites) {
+        this.userId = userId;
+        this.ownerId = ownerId;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.date = date;
+        this.favorites = favorites;
+    }
+
     public Integer getUserId() {
         return userId;
     }
@@ -49,11 +63,11 @@ public class User {
         this.userId = userId;
     }
 
-    public Integer getOwnerId() {
+    public Owner getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(Integer ownerId) {
+    public void setOwnerId(Owner ownerId) {
         this.ownerId = ownerId;
     }
 
