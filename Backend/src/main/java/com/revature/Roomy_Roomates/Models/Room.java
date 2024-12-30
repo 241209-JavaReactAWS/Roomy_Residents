@@ -13,14 +13,17 @@ public class Room {
     @Id
     @Column(name = "room_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer room_id;
+    private Integer roomId;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
     @Column(name = "room_type", nullable = false)
-    private String room_type;
+    private String roomType;
+
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @Column(name = "status", nullable = false)
     private Status status;
