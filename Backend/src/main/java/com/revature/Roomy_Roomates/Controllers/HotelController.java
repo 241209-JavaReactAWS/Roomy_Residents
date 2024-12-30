@@ -78,7 +78,7 @@ public class HotelController{
             return ResponseEntity.notFound().build(); // Hotel Not Found
         }
         
-        Hotel updatedHotel = hotelService.updateHotel(hotel);
+        Hotel updatedHotel = hotelService.updateHotel(hotel,hotelId);
         return ResponseEntity.ok(updatedHotel);
     }
 
@@ -94,7 +94,7 @@ public class HotelController{
             return ResponseEntity.notFound().build(); // Hotel Not Found
         }
 
-        hotelService.deleteHotel(hotelId);
+        hotelService.deleteHotel(hotel, hotelId);
         return ResponseEntity.ok().build();
     }
 
