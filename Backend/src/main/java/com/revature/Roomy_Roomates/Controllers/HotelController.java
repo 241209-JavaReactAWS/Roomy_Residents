@@ -52,12 +52,9 @@ public class HotelController{
     public ResponseEntity<Hotel> createNewHotel(HttpSession session, @RequestBody Hotel hotel){
         // Check if user is logged in
         if (session.isNew() || session.getAttribute("username") == null){
-            return ResponseEntity.status(401).build();
+            return ResponseEntity.status(401).build(); // Unauthorized
         }
-        // //Authentication
-        // if (session.getAttribute("role") != Role.ADMIN){
-        //     return ResponseEntity.status(403).build();
-        // }
+
         Hotel newHotel = hotelService.createNewHotel(hotel);
 
         if(newHotel == null){
@@ -68,13 +65,35 @@ public class HotelController{
 
     @PutMapping("{hotelId}")
     public ResponseEntity<Hotel> updateHotel(@PathVariable int hotelId, HttpSession session, @RequestBody Hotel hotel){
+        if (session.isNew() || session.getAttribute("username") == null){
+            return ResponseEntity.status(401).build(); // Unauthorized
+        }
+
+        if (hotel.getHotelId() != hotelId) {
+            return ResponseEntity.badRequest().build(); // Bad Request
+        }
+    
+        Optional<Hotel> existingHotel = hotelService.getHotelById(hotelId);
+        if (existingHotel.isEmpty()) {
+            return ResponseEntity.notFound().build(); // Hotel Not Found
+        }
         
-        return ResponseEntity.ok(hotelService.updateHotel(hotel));
+        Hotel updatedHotel = hotelService.updateHotel(hotel);
+        return ResponseEntity.ok(updatedHotel);
     }
 
     @DeleteMapping("{hotelId}")
     public ResponseEntity<Void> deleteHotel(@PathVariable int hotelId, HttpSession session, @RequestBody Hotel hotel){
         
+        if (session.isNew() || session.getAttribute("username") == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        Optional<Hotel> existingHotel = hotelService.getHotelById(hotelId);
+        if (existingHotel.isEmpty()) {
+            return ResponseEntity.notFound().build(); // Hotel Not Found
+        }
+
         hotelService.deleteHotel(hotelId);
         return ResponseEntity.ok().build();
     }

@@ -33,7 +33,12 @@ public class HotelService {
     }
 
     public Hotel updateHotel(Hotel hotel){
-        return hotelDAO.save(hotel);
+        if(hotelDAO.existsById(hotel.getHotelId())){
+            return hotelDAO.save(hotel);
+        }
+        else {
+            throw new IllegalArgumentException("Hotel not found");
+        }
     }
 
     public void deleteHotel(int hotelId)  {

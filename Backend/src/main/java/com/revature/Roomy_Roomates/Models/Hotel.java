@@ -2,8 +2,6 @@ package com.revature.Roomy_Roomates.Models;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
 @Table(name="hotels")
 public class Hotel{
@@ -11,7 +9,7 @@ public class Hotel{
     @Id
     @Column(name = "hotel_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer hotelID;
+    private Integer hotelId;
     
     @Column(name="hotel_name")
     private String hotelName;
@@ -39,7 +37,7 @@ public class Hotel{
 
     public Hotel(int hotelID, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
             String hotelEmail, String hotelImage, Owner owner) {
-        this.hotelID = hotelID;
+        this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.hotelAddress = hotelAddress;
         this.hotelZipcode = hotelZipcode;
@@ -49,12 +47,12 @@ public class Hotel{
         this.owner = owner;
     }
 
-    public int getHotelID() {
-        return hotelID;
+    public int getHotelId() {
+        return hotelId;
     }
 
-    public void setHotelID(int hotelID) {
-        this.hotelID = hotelID;
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
     }
 
     public String getHotelName() {
