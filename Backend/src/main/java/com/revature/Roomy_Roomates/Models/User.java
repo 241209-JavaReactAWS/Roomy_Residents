@@ -20,6 +20,7 @@ public class User {
 
     private String username;
     private String password;
+    private Roles role;
 
     @Column(name = "first_name")
     private String firstName;
@@ -43,7 +44,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer userId, Owner ownerId, String username, String password, String firstName, String lastName, String email, Date date, Set<Hotel> favorites) {
+    public User(Integer userId, Owner ownerId, String username, String password, String firstName, String lastName, String email, Date date, Set<Hotel> favorites, Roles role) {
         this.userId = userId;
         this.ownerId = ownerId;
         this.username = username;
@@ -53,6 +54,7 @@ public class User {
         this.email = email;
         this.date = date;
         this.favorites = favorites;
+        this.role = role;
     }
 
     public Integer getUserId() {
@@ -125,5 +127,13 @@ public class User {
 
     public void setFavorites(Set<Hotel> favorites) {
         this.favorites = favorites;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
     }
 }
