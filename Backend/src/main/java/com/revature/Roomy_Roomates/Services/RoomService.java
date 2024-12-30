@@ -11,9 +11,31 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-
-
 @Service
 public class RoomService {
+
+    private final RoomDAO roomDAO;
+
+    @Autowired
+    public RoomService(RoomDAO roomDAO) {this.roomDAO = roomDAO;}
+
+    public Optional<Hotel> getRoomById(int roomId){
+        return roomdaoDAO.findById(roomId);
+    }
+
+    public List<Room> getAllRooms(){
+        return roomDAO.findAll();}
+
+    public Room createNewRoom(Room room){
+        return roomDAO.save(room);
+    }
+
+    public Room updateRoom(Room room){
+        return hotelDAO.save(room);
+    }
+
+    public void deleteRoom(int roomId)  {
+        roomDAO.deleteById(roomId);
+    }
 
 }
