@@ -5,7 +5,7 @@ package com.revature.Roomy_Roomates.entities;
 @Setter
 @Entity
 @Table(name = 'rooms')
-public class Rooms {
+public class Room {
 
     @Column(name = "room_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Rooms {
 
     public Room() {}
 
-    public Rooms(int room_id, int hotel_id, String room_type, Status status, String image) {
+    public Room(int room_id, int hotel_id, String room_type, Status status, String image) {
         this.room_id = room_id;
         this.hotel_id = hotel_id;
         this.room_type = room_type;
