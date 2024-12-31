@@ -3,29 +3,31 @@ package com.revature.Roomy_Roomates.Models;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name= "bookings")
+@Table(name= "Bookings")
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id",nullable = false)
     private Integer bookingId;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "User_id", nullable = false)
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "room_id", referencedColumnName = "room_id", nullable = false)
-    private Room room_id;
+    private Room room;
 
-    @Column(name = "datecheckin",nullable = false)
-    private String dateCheckIn;
+    @Column(name = "dateCheckIn", nullable = false)
+    private LocalDate dateCheckIn;
 
-    @Column(name = "datecheckout",nullable = false)
-    private String dateCheckOut;
+    @Column(name = "dateCheckOut", nullable = false)
+    private LocalDate dateCheckOut;
 
     @Column(name = "totalcost",nullable = false)
     private BigDecimal totalCost;
@@ -33,21 +35,20 @@ public class Booking {
     @Column(name = "bookingstatus",nullable = false)
     private String bookingStatus;
 
-    @Column (name = "atTime",nullable = false)
+    @Column (name = "atTime", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime   atTime = LocalDateTime.now();
 
     public Booking() {
     }
 
-    public Booking(Integer userId, Room room_id, String dateCheckIn, String dateCheckOut, BigDecimal totalCost, String bookingStatus) {
-        this.userId = userId;
-        this.room_id = room_id;
+    public Booking(User user, Room room, LocalDate dateCheckIn, LocalDate dateCheckOut, BigDecimal totalCost, String bookingStatus) {
+        this.user = user;
+        this.room = room;
         this.dateCheckIn = dateCheckIn;
         this.dateCheckOut = dateCheckOut;
         this.totalCost = totalCost;
         this.bookingStatus = bookingStatus;
     }
-
 
     public Integer getBookingId() {
         return bookingId;
@@ -57,35 +58,35 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Room getRoomId() {
-        return room_id;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomId(Room roomId) {
-        this.room_id = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public String getDateCheckIn() {
+    public LocalDate getDateCheckIn() {
         return dateCheckIn;
     }
 
-    public void setDateCheckIn(String dateCheckIn) {
+    public void setDateCheckIn(LocalDate dateCheckIn) {
         this.dateCheckIn = dateCheckIn;
     }
 
-    public String getDateCheckOut() {
+    public LocalDate getDateCheckOut() {
         return dateCheckOut;
     }
 
-    public void setDateCheckOut(String dateCheckOut) {
+    public void setDateCheckOut(LocalDate dateCheckOut) {
         this.dateCheckOut = dateCheckOut;
     }
 
@@ -111,13 +112,5 @@ public class Booking {
 
     public void setAtTime(LocalDateTime atTime) {
         this.atTime = atTime;
-    }
-
-    public Room getRoom() {
-        return room_id;
-    }
-
-    public void setRoom(Room room_id) {
-        this.room_id = room_id;
     }
 }

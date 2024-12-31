@@ -3,10 +3,12 @@ package com.revature.Roomy_Roomates.Services;
 import com.revature.Roomy_Roomates.DAOs.BookingDAO;
 import com.revature.Roomy_Roomates.Models.Booking;
 import com.revature.Roomy_Roomates.Models.Room;
+import com.revature.Roomy_Roomates.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +21,13 @@ public class BookingService {
 
     /*********************** GET ALL BOOKINGS BY USER ID ********************/
     public List<Booking> findByUserId(Integer userId){
-        List<Booking> bookings = bookingDAO.findByUserId(userId);
+
         if (userId == null) {
             throw new IllegalArgumentException("User ID cannot be null");
+        }
+        List<Booking> bookings = bookingDAO.findByUserId(userId);
+        if (bookings.isEmpty()) {
+            throw new IllegalArgumentException("No bookings found for user ID: " + userId);
         }
         return bookingDAO.findByUserId(userId);
     }
@@ -35,20 +41,26 @@ public class BookingService {
         bookingDAO.deleteById(bookingId);
         return booking;
     }
-
+    /**************** CHECK ROOM IS AVAILABLE  ****************/
+    public boolean isRoomAvailable (Integer roomId, LocalDate dateCheckIn, LocalDate dateCheckOut){
+        Integer count = bookingDAO.checkAvailability(roomId, dateCheckIn, dateCheckOut);
+        return count == 0;
+    }
      /************************ CREATE BOOKING BY USER ID ******************/
-    public Booking createBooking(   Integer user_id,
+    public Booking createBooking(   User user,
                                     Room room,
-                                    String dateCheckIn,
-                                    String datCheckOut,
+                                    LocalDate dateCheckIn,
+                                    LocalDate dateCheckOut,
                                     BigDecimal totalCost,
                                     String bookingStatus){
-
-
-        if (user_id== null || room == null || dateCheckIn == null || datCheckOut == null || totalCost == null || bookingStatus == null) {
-            throw new IllegalArgumentException("Booking cannot be null");
+        if (!isRoomAvailable(room.getRoomId(),dateCheckIn, dateCheckOut)) {
+            throw new IllegalArgumentException("Room is not available");
         }
-        Booking booking = new Booking(user_id, room, dateCheckIn, datCheckOut, totalCost, bookingStatus);
+        if (user == null || room == null || dateCheckIn == null || dateCheckOut == null ||
+                totalCost == null || bookingStatus == null) {
+            throw new IllegalArgumentException("Booking details cannot be null");
+        }
+        Booking booking = new Booking(user, room, dateCheckIn, dateCheckOut, totalCost, bookingStatus);
         booking.setAtTime(LocalDateTime.now());
         return bookingDAO.save(booking);
     }
@@ -60,7 +72,7 @@ public class BookingService {
             throw new IllegalArgumentException("Booking ID not found");
         }
         Booking booking = existingBooking.get();
-           booking.setUserId(bookingUpdate.getUserId());
+           booking.setUser(bookingUpdate.getUser());
            booking.setRoom(bookingUpdate.getRoom());
            booking.setDateCheckIn(bookingUpdate.getDateCheckIn());
            booking.setDateCheckOut(bookingUpdate.getDateCheckOut());

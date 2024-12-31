@@ -30,15 +30,25 @@ public class RoomService {
         return roomDAO.save(room);
     }
 
-    public Room updateRoom(Room room){
-        return roomDAO.save(room);
+    public Room updateRoom(int roomId, Room newRoom) {
+    return roomDAO.findById(roomId)
+            .map(oldRoom -> {
+        oldRoom.setHotel(newRoom.getHotel());
+        oldRoom.setCapacity(newRoom.getCapacity());
+        oldRoom.setDescription(newRoom.getDescription());
+        oldRoom.setRoomType(newRoom.getRoomType());
+        oldRoom.setStatus(newRoom.isStatus());
+        oldRoom.setImage(newRoom.getImage());
+        return roomDAO.save(newRoom);
+    })
+            .orElseThrow(() -> new IllegalArgumentException("Room not found"));
     }
 
     public void deleteRoom(int roomId)  {
         roomDAO.deleteById(roomId);
     }
 
-    public List<Room> getRoomByAvailability(Status status) {
+    public List<Room> getRoomByAvailability(boolean status) {
         return roomDAO.findByStatus(status);
     }
 
@@ -50,11 +60,11 @@ public class RoomService {
         return roomDAO.findByRoomType(roomType);
     }
 
-    public List<Room> getRoomByHotelAndStatus(Hotel hotel, Status status) {
+    public List<Room> getRoomByHotelAndStatus(Hotel hotel, boolean status) {
         return roomDAO.findByHotelAndStatus(hotel, status);
     }
 
-    public List<Room> getRoomByRoomTypeAndStatus(String roomType, Status status) {
+    public List<Room> getRoomByRoomTypeAndStatus(String roomType, boolean status) {
         return roomDAO.findByRoomTypeAndStatus(roomType, status);
     }
 
@@ -62,7 +72,7 @@ public class RoomService {
         return roomDAO.findByRoomTypeAndHotel(roomType, hotel);
     }
 
-    public List<Room> getRoomByRoomTypeAndStatusAndHotel(String roomType, Status status, Hotel hotel) {
+    public List<Room> getRoomByRoomTypeAndStatusAndHotel(String roomType, boolean status, Hotel hotel) {
         return roomDAO.findByRoomTypeAndStatusAndHotel(roomType, status, hotel);
     }
 }

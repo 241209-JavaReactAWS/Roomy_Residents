@@ -1,7 +1,9 @@
 package com.revature.Roomy_Roomates.Services;
 
+import com.revature.Roomy_Roomates.DAOs.HotelDAO;
 import com.revature.Roomy_Roomates.DAOs.UserDAO;
 import com.revature.Roomy_Roomates.Exceptions.*;
+import com.revature.Roomy_Roomates.Models.Hotel;
 import com.revature.Roomy_Roomates.Models.Roles;
 import com.revature.Roomy_Roomates.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -17,11 +20,13 @@ public class UserService {
     private Integer passwordMinLength = 4;
     private Integer usernameMinLength = 4;
     private UserDAO userDAO;
+    private HotelDAO hotelDAO;
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10,new SecureRandom());
 
     @Autowired
     public UserService(UserDAO userDAO) {
         this.userDAO = userDAO;
+        this.hotelDAO=hotelDAO;
     }
 
     public User getUserById(Integer id) throws NotInDatabase {
@@ -143,6 +148,34 @@ public class UserService {
         if(userSearch.isEmpty()) throw new NotInDatabase();
         userDAO.deleteById(givenUser.getUserId());
         return userSearch.get();
+    }
+
+    public User addHotelToFavorites(String username, int hotelId){
+        Optional<User> possibleUser = userDAO.findUserByUsername(username);
+        Optional<Hotel> possibleHotel = hotelDAO.findById(hotelId);
+        if (possibleUser.isEmpty() || possibleHotel.isEmpty()){
+            return null;
+        }
+        User returnedUser = possibleUser.get();
+        Hotel returnedHotel = possibleHotel.get();
+        Set<Hotel> favorites = returnedUser.getFavorites();
+        favorites.add(returnedHotel);
+        returnedUser.setFavorites(favorites);
+        return userDAO.save(returnedUser);
+    }
+
+    public User removeHotelFromFavorites(String username, int hotelId){
+        Optional<User> possibleUser = userDAO.findUserByUsername(username);
+        Optional<Hotel> possibleHotel = hotelDAO.findById(hotelId);
+        if (possibleUser.isEmpty() || possibleHotel.isEmpty()){
+            return null;
+        }
+        User returnedUser = possibleUser.get();
+        Hotel returnedHotel = possibleHotel.get();
+        Set<Hotel> favorites = returnedUser.getFavorites();
+        favorites.remove(returnedHotel);
+        returnedUser.setFavorites(favorites);
+        return userDAO.save(returnedUser);
     }
 
 
