@@ -48,31 +48,9 @@ public class RoomService {
         roomDAO.deleteById(roomId);
     }
 
-    public List<Room> getRoomByAvailability(boolean status) {
-        return roomDAO.findByStatus(status);
-    }
-
-    public List<Room> getRoomByHotel(Hotel hotel) {
-        return roomDAO.findByHotel(hotel);
-    }
-
-    public List<Room> getRoomByRoomType(String roomType) {
-        return roomDAO.findByRoomType(roomType);
-    }
-
-    public List<Room> getRoomByHotelAndStatus(Hotel hotel, boolean status) {
-        return roomDAO.findByHotelAndStatus(hotel, status);
-    }
-
-    public List<Room> getRoomByRoomTypeAndStatus(String roomType, boolean status) {
-        return roomDAO.findByRoomTypeAndStatus(roomType, status);
-    }
-
-    public List<Room> getRoomByRoomTypeAndHotel(String roomType, Hotel hotel) {
-        return roomDAO.findByRoomTypeAndHotel(roomType, hotel);
-    }
-
-    public List<Room> getRoomByRoomTypeAndStatusAndHotel(String roomType, boolean status, Hotel hotel) {
-        return roomDAO.findByRoomTypeAndStatusAndHotel(roomType, status, hotel);
+    public List<Room> getRoomsForHotel(int hotelId, boolean status, String roomType, int capacity) {
+        // Filter rooms by the given criteria for a specific hotel
+        // You would use repository methods to query the database with filters like availability, roomType, capacity
+        return roomDAO.findRoomsByHotelIdAndFilters(hotelId, status, roomType, capacity);
     }
 }

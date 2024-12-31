@@ -3,20 +3,16 @@ package com.revature.Roomy_Roomates.Controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.revature.Roomy_Roomates.Models.Room;
+import com.revature.Roomy_Roomates.Services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.revature.Roomy_Roomates.Models.Hotel;
 import com.revature.Roomy_Roomates.Services.HotelService;
+import com.revature.Roomy_Roomates.Services.RoomService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -25,10 +21,12 @@ import jakarta.servlet.http.HttpSession;
 public class HotelController{
 
     private final HotelService hotelService;
-    
+    private final RoomService roomService;
+
     @Autowired
-    public HotelController(HotelService hotelService) {
+    public HotelController(HotelService hotelService, RoomService roomService) {
         this.hotelService = hotelService;
+        this.roomService = roomService;
     }
 
     @GetMapping("{hotelId}") 
@@ -46,6 +44,24 @@ public class HotelController{
     @GetMapping
     public List<Hotel> getAllHotels(){
         return hotelService.getAllHotels();
+    }
+
+    @GetMapping("{hotelId}/rooms")
+    public ResponseEntity<List<Room>> getRoomsForHotel(@PathVariable int hotelId,
+                                                       @RequestParam(required = false) boolean status,
+                                                       @RequestParam(required = false) String roomType,
+                                                       @RequestParam(required = false) int capacity) {
+
+        // Fetch the hotel to make sure it exists
+        Optional<Hotel> hotel = hotelService.getHotelById(hotelId);
+        if (hotel.isEmpty()) {
+            return ResponseEntity.notFound().build(); // Hotel not found
+        }
+
+        // Call the roomService with optional filters for room status, type, capacity
+        List<Room> rooms = roomService.getRoomsForHotel(hotelId, status, roomType, capacity);
+
+        return ResponseEntity.ok(rooms); // Return the list of rooms
     }
 
     @PostMapping
