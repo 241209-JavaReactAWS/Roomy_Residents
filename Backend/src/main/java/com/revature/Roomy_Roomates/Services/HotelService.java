@@ -36,7 +36,9 @@ public class HotelService {
         return hotelDAO.findById(hotelId)
             .map(existingHotel -> {
                 existingHotel.setHotelName(updatedHotel.getHotelName());
-                existingHotel.setHotelAddress(updatedHotel.getHotelAddress());
+                existingHotel.setHotelStreet(updatedHotel.getHotelStreet());
+                existingHotel.setHotelCity(updatedHotel.getHotelCity());
+                existingHotel.setHotelState(updatedHotel.getHotelState());
                 existingHotel.setHotelZipcode(updatedHotel.getHotelZipcode());
                 existingHotel.setHotelEmail(updatedHotel.getHotelEmail());
                 existingHotel.setHotelPhoneNumber(updatedHotel.getHotelPhoneNumber());

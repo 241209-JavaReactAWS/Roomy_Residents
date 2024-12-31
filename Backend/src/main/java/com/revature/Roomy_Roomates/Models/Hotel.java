@@ -15,7 +15,13 @@ public class Hotel{
     private String hotelName;
     
     @Column(name="hotel_address")
-    private String hotelAddress;
+    private String hotelStreet;
+
+    @Column(name="hotel_city")
+    private String hotelCity;
+
+    @Column(name="hotel_state")
+    private String hotelState;
     
     @Column(name="hotel_zipcode")
     private Integer hotelZipcode;
@@ -39,7 +45,7 @@ public class Hotel{
             String hotelEmail, String hotelImage, Owner owner) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
-        this.hotelAddress = hotelAddress;
+        this.hotelStreet = hotelStreet;
         this.hotelZipcode = hotelZipcode;
         this.hotelPhoneNumber = hotelPhoneNumber;
         this.hotelEmail = hotelEmail;
@@ -63,12 +69,12 @@ public class Hotel{
         this.hotelName = hotelName;
     }
 
-    public String getHotelAddress() {
-        return hotelAddress;
+    public String getHotelStreet() {
+        return hotelStreet;
     }
 
-    public void setHotelAddress(String hotelAddress) {
-        this.hotelAddress = hotelAddress;
+    public void setHotelStreet(String hotelStreet) {
+        this.hotelStreet = hotelStreet;
     }
 
     public int getHotelZipcode() {
@@ -109,6 +115,22 @@ public class Hotel{
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+    public String getHotelCity() {
+        return hotelCity;
+    }
+
+    public void setHotelCity(String hotelCity) {
+        this.hotelCity = hotelCity;
+    }
+
+    public String getHotelState() {
+        return hotelState;
+    }
+
+    public void setHotelState(String hotelState) {
+        this.hotelState = hotelState;
     }
 
     
