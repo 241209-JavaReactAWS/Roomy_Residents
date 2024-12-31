@@ -20,7 +20,7 @@ public class User {
 
     private String username;
     private String password;
-    private Roles role;
+    private Roles role= Roles.USER;
 
     @Column(name = "first_name")
     private String firstName;
