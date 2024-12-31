@@ -34,6 +34,7 @@ public class RoomService {
     return roomDAO.findById(roomId)
             .map(oldRoom -> {
         oldRoom.setHotel(newRoom.getHotel());
+        oldRoom.setCapacity(newRoom.getCapacity());
         oldRoom.setDescription(newRoom.getDescription());
         oldRoom.setRoomType(newRoom.getRoomType());
         oldRoom.setStatus(newRoom.isStatus());

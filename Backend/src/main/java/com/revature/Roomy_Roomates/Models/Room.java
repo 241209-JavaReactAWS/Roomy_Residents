@@ -28,14 +28,18 @@ public class Room {
     @Column(name = "status", nullable = false)
     private boolean status;
 
+    @Column(name = "capacity", nullable = false)
+    private int capacity;
+
     @Column(name = "image", nullable = false)
     private String image;
 
     public Room() {
     }
 
-    public Room(int room_id, Hotel hotel, String room_type, boolean status, String image) {
+    public Room(int room_id, int capacity, Hotel hotel, String room_type, boolean status, String image) {
         this.roomId = room_id;
+        this.capacity = capacity;
         this.hotel = hotel;
         this.roomType = room_type;
         this.status = status;
@@ -52,6 +56,11 @@ public class Room {
     public Hotel getHotel() {
         return hotel;
     }
+
+    public int getCapacity() { return capacity; }
+
+    public void setCapacity(int capacity) { this.capacity = capacity; }
+
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
@@ -71,15 +80,19 @@ public class Room {
     public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public boolean isStatus() {
         return status;
     }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
