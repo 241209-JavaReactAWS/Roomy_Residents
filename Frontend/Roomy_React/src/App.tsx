@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import AllHotels from './components/HotelComponent/AllHotels'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Nav from './components/Nav/nav'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-          <nav></nav>
+        <Nav></Nav>
           <Routes>
             <Route path='/' element={<AllHotels></AllHotels>}></Route>
           </Routes>
