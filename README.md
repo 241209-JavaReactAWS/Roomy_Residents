@@ -16,3 +16,4 @@
 - **GET** userauth
 - - Obtain User Login Cookie and Returns OK
 - - If there is no cookie, return 404
+- 
