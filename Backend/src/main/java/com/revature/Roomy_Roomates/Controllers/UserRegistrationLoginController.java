@@ -38,7 +38,7 @@ public class UserRegistrationLoginController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Username or Password");
             }
         } catch (NotInDatabase e){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Username or Password");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid Username or Password");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Something Went Wrong");
         }
@@ -48,7 +48,7 @@ public class UserRegistrationLoginController {
     public ResponseEntity registerAccount(@RequestBody User givenUser){
         try{
             User resultUser = userService.postUser(givenUser);
-            return ResponseEntity.status(HttpStatus.OK).body(resultUser);
+            return ResponseEntity.status(HttpStatus.CREATED).body(resultUser);
         } catch (ImproperFormat e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Improper Inputs");
         } catch (AlreadyExists e) {
