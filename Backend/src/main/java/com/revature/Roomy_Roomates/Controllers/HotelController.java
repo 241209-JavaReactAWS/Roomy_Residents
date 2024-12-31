@@ -21,7 +21,7 @@ import com.revature.Roomy_Roomates.Services.HotelService;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("hotel")
+@RequestMapping("hotels")
 public class HotelController{
 
     private final HotelService hotelService;
