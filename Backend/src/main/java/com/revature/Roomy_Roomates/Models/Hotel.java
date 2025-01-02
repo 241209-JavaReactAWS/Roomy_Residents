@@ -35,6 +35,9 @@ public class Hotel{
     @Column(name = "hotel_image")
     private String hotelImage;
 
+    @Column(name= "rating")
+    private int rating;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id")
     private Owner owner;
@@ -42,7 +45,7 @@ public class Hotel{
     public Hotel(){}
 
     public Hotel(int hotelId, String hotelName, String hotelAddress, int hotelZipcode, String hotelPhoneNumber,
-            String hotelEmail, String hotelImage, Owner owner) {
+            String hotelEmail, String hotelImage, int rating, Owner owner) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.hotelStreet = hotelStreet;
@@ -50,6 +53,7 @@ public class Hotel{
         this.hotelPhoneNumber = hotelPhoneNumber;
         this.hotelEmail = hotelEmail;
         this.hotelImage = hotelImage;
+        this.rating=rating;
         this.owner = owner;
     }
 
@@ -131,6 +135,14 @@ public class Hotel{
 
     public void setHotelState(String hotelState) {
         this.hotelState = hotelState;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     

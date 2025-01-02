@@ -114,4 +114,27 @@ public class HotelController{
         return ResponseEntity.ok().build();
     }
 
+
+    @GetMapping
+    public List<Hotel> getHotelByFiltering( @RequestParam(name = "hotelName", required = false) String hotelName,
+                                            @RequestParam(name = "rating", required = false) Integer rating,
+                                            @RequestParam(name = "hotelCity", required = false) String hotelCity,
+                                            @RequestParam(name = "hotelState", required = false) String hotelState,
+                                            @RequestParam(name = "hotelZipcode", required = false) Integer hotelZipcode){
+        if (hotelName != null) {
+            return hotelService.searchByHotelName(hotelName);
+        } else if (rating != null) {
+            return hotelService.searchByHotelRating(rating);
+        } else if (hotelCity != null && hotelState != null) {
+            return hotelService.searchByCityAndState(hotelCity, hotelState);
+        } else if (hotelState != null) {
+            return hotelService.searchByState(hotelState);
+        } else if (hotelZipcode != null) {
+            return hotelService.searchByZipcode(hotelZipcode);
+        } else {
+            return hotelService.getAllHotels(); 
+        }
+    }
+
+
 }
