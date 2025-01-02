@@ -11,7 +11,7 @@ CREATE TABLE Users (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     birthday DATE ,
-    Role VARCHAR(50) NOT NULL CHECK (Role IN ('Admin', 'Owner', 'User'))
+    Role INT NOT NULL CHECK (Role IN (1, 2, 3))
    
 );
 
