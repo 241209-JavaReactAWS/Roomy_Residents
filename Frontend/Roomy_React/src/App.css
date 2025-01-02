@@ -10,18 +10,13 @@ html, body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-input[type="text"]::-webkit-input-placeholder{
-  font-family: Arial, Helvetica, sans-serif;}
+button:hover{
+  background-color: rgb(250, 226, 180);
+}
 
-input[type="text"]::-moz-placeholder{
-  font-family: Arial, Helvetica, sans-serif;}
-
-input[type="text"]::-ms-input-placeholder{
-  font-family: Arial, Helvetica, sans-serif;}
-
-input[type="text"]:-moz-placeholder{
-  font-family: Arial, Helvetica, sans-serif;}
-
+button:active{
+    background-color: rgb(170, 128, 48);
+  }
 /*
 .logo {
   height: 6em;
