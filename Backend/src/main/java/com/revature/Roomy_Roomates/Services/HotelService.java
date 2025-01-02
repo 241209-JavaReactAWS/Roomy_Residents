@@ -56,8 +56,26 @@ public class HotelService {
         else {
             throw new IllegalArgumentException("Hotel not found");
         }        
+    }
 
-        
+    public List<Hotel> searchByHotelName(String hotelName){
+        return hotelDAO.findAllByNameIgnoreCase(hotelName);
+    }
+
+    public List<Hotel> searchByHotelRating(int rating){
+        return hotelDAO.findAllByRating(rating);
+    }
+
+    public List<Hotel> searchByCityAndState(String hotelCity, String hotelState) {
+        return hotelDAO.findAllByHotelCityAndHotelState(hotelCity, hotelState);
+    }
+
+    public List<Hotel> searchByState(String hotelState) {
+        return hotelDAO.findAllByHotelState(hotelState);
+    }
+
+    public List<Hotel> searchByZipcode(int hotelZipcode) {
+        return hotelDAO.findAllByHotelZipcode(hotelZipcode);
     }
     
 }
