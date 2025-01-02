@@ -10,7 +10,7 @@ import com.revature.Roomy_Roomates.Models.Hotel;
 @Repository
 public interface HotelDAO extends JpaRepository<Hotel, Integer> {
 
-    List<Hotel> findAllByNameIgnoreCase(String hotelName);
+    List<Hotel> findAllByHotelNameIgnoreCase(String hotelName);
 
     List<Hotel> findAllByRating(int rating);
 

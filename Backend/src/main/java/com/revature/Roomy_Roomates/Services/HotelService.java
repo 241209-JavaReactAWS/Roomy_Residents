@@ -59,7 +59,7 @@ public class HotelService {
     }
 
     public List<Hotel> searchByHotelName(String hotelName){
-        return hotelDAO.findAllByNameIgnoreCase(hotelName);
+        return hotelDAO.findAllByHotelNameIgnoreCase(hotelName);
     }
 
     public List<Hotel> searchByHotelRating(int rating){
