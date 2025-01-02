@@ -1,4 +1,5 @@
 interface EndpointProp {
+    placeholder ?: string,
     endpoint : string,
     statusChanger ?: any,
     data ?: any

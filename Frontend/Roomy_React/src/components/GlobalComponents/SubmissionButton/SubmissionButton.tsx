@@ -7,16 +7,16 @@ function SubmissionButton(props : EndpointProp) {
 
   const [state,setState] = useState("default")
 
+  const placeholder : string = props.placeholder != null ? props.placeholder : "Submit"
+
   function submit(){
     axios.post(props.endpoint,props.data == null ? props.data : {},{withCredentials:true})
-    .then((data) => {console.log("success")})
+    .then((data : any) => {console.log("success")})
     .catch((error) => {console.log("error")})
   }
   
   return (
-    <div>
-      <button id='SubmitButton' className={state} onClick={submit}>Submit</button>
-    </div>
+    <button id='SubmitButton' className={state} onClick={submit}>{placeholder}</button>
   )
 }
 

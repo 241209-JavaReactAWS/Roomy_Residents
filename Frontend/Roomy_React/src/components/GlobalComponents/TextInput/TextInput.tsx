@@ -12,10 +12,11 @@ function TextInput(props : TextInputInterface) {
     props.onValueChange(event.target.value);
   };
 
+  const type : string = props.id == "password_input" ? "password" : "text";
 
   return (
     <>
-    <input id={props.id} className='TextInputBox' type='text' placeholder={props.for} 
+    <input id={props.id} className='TextInputBox' type={type} placeholder={props.for} 
     style={{width:widthValue}} onChange={handleChange}></input>
     </>
   )
