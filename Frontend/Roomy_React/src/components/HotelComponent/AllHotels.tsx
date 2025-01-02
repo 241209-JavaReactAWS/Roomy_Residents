@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function AllHotels() {
     const [allHotels,setAllHotels]=useState<Hotel[]>([])
+    const [favorites, setFavorites] = useState<Hotel[]>([])
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -19,10 +20,28 @@ function AllHotels() {
             })
     },[])
 
+    useEffect(() => {
+        axios.get<Hotel[]>('http://localhost:8080/User/favorites', { withCredentials: true })
+          .then((res) => {
+            setFavorites(res.data); 
+          })
+          .catch((err) => {
+            console.error('Error fetching favorites:', err);
+          });
+      }, []);
+
 
   return (
-    <div>AllHotels
-        <div>AllHotels Component Loaded</div>
+    <div>
+        <h3>AllHotels Component Loaded</h3>
+        <div>
+            <h3>Your Favorite Hotels</h3>
+            <ul>
+                {favorites.map((hotel) => (
+                    <li key={hotel.hotelId}>{hotel.hotelName}</li> 
+                ))}
+            </ul>
+        </div>
         <header>
             search hotels on location- city and state
         </header>
