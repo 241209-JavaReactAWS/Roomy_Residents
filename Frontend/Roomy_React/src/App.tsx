@@ -5,6 +5,7 @@ import './App.css'
 import AllHotels from './components/HotelComponent/AllHotels'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Nav from './components/Nav/nav'
+import LoginPage from './components/LoginComponents/LoginPage'
 
 
 function App() {
@@ -16,7 +17,9 @@ function App() {
       <BrowserRouter>
         <Nav></Nav>
           <Routes>
+            <Route path="/login" element={<LoginPage></LoginPage>}></Route>
             <Route path='/' element={<AllHotels></AllHotels>}></Route>
+
           </Routes>
         </BrowserRouter>
       
