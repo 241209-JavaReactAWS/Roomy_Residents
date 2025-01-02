@@ -11,8 +11,8 @@ CREATE TABLE Users (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     birthday DATE ,
-    Role VARCHAR(50) NOT NULL CHECK (Role IN ('Admin', 'Owner', 'Customer'))
-        
+    Role VARCHAR(50) NOT NULL CHECK (Role IN ('Admin', 'Owner', 'User'))
+   
 );
 
 CREATE TABLE Owner (
@@ -26,6 +26,8 @@ CREATE TABLE Hotels (
     Owner_id BIGINT NOT NULL REFERENCES Users(User_id) ON DELETE CASCADE,
     hotel_name VARCHAR(255) NOT NULL,
     hotel_Address TEXT NOT NULL,
+    hotel_city VARCHAR(100) NOT NULL,
+    hotel_state VARCHAR(100) NOT NULL,
     hotel_zipcode INT NOT NULL,
     hotel_phone_number VARCHAR(15),
     Hotel_email VARCHAR(255),
