@@ -1,6 +1,7 @@
 interface EndpointProp {
     endpoint : string,
-    data : any
+    statusChanger ?: any,
+    data ?: any
 }
 
 export default EndpointProp

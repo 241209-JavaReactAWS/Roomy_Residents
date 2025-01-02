@@ -13,7 +13,7 @@ function TextInput(props : TextInputInterface) {
   return (
     <>
     <label htmlFor={props.id}>{props.for}:</label>
-    <input id={props.id} type='text'></input>
+    <input id={props.id} type='text' width={props.width != null ? props.width : "80%"}></input>
     </>
   )
 }

@@ -8,7 +8,7 @@ function SubmissionButton(props : EndpointProp) {
   const [state,setState] = useState("default")
 
   function submit(){
-    axios.post(props.endpoint,props.data,{withCredentials:true})
+    axios.post(props.endpoint,props.data == null ? props.data : {},{withCredentials:true})
     .then((data) => {console.log("success")})
     .catch((error) => {console.log("error")})
   }
