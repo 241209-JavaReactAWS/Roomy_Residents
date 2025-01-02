@@ -61,11 +61,12 @@ return (
     </header>
     <h1>Rooms for Hotel {hotelId}</h1>
 
-      {/* Filters */}
+
+    
     <div style={{ marginBottom: '20px' }}>
         <label>
             Availability:
-            <select onChange={e => setFilters({...filters, availability: e.target.value})}>
+            <select onChange={e => handleFilterChange({ availability: e.target.value })}>
                 <option value="">All</option>
                 <option value="true">Available</option>
                 <option value="false">Unavailable</option>
@@ -73,7 +74,7 @@ return (
         </label>
         <label>
             Room Type:
-            <select onChange={e => setFilters({...filters, roomType: e.target.value})}>
+            <select onChange={e => handleFilterChange({ roomType: e.target.value })}>
                 <option value="">All</option>
                 <option value="deluxe">Deluxe</option>
                 <option value="standard">Standard</option>
@@ -84,10 +85,11 @@ return (
             <input
                 type="number"
                 placeholder="Capacity"
-                onChange={e => setFilters({ ...filters, capacity: e.target.value })}
+                onChange={e => handleFilterChange({ capacity: e.target.value })}
             />
         </label>
          {/* Room List */}
+        
         <main>
             <h2>Rooms Available</h2>
         <ul>
