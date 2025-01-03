@@ -1,11 +1,11 @@
 @keyframes imageShrink {
     0%{
         filter: brightness(0);
-        transform: translateX(-70%);
+        transform: translateX(-65%);
     }
     3%{
         filter: brightness(1);
-        transform: translateX(-70%);
+        transform: translateX(-65%);
     }
     97%{
         transform: translateX(0);
@@ -21,7 +21,7 @@
     background-color: wheat;  
     margin: 0;
     border: 0;
-    height: 100vh;
+    height: calc(100vh - 64px);
     overflow: hidden;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -35,7 +35,7 @@
 
 #LoginGraphic img{
     height: 100%;
-    transform: translateX(-70%);
+    transform: translateX(-65%);
     animation-name: imageShrink;
     animation-duration: 30s;
     animation-iteration-count: infinite;

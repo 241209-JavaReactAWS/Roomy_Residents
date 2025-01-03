@@ -1,4 +1,4 @@
-button{
+#LoginForm div button{
     width: 15%;
     height: 50px;
     background-color: rgb(240, 207, 145);
@@ -9,10 +9,10 @@ button{
     margin-left: 525px;
 }
 
-button:hover{
-  background-color: rgb(250, 226, 180);
-}
-
-button:active{
-    background-color: rgb(170, 128, 48);
+#LoginForm div button:hover{
+    background-color: rgb(250, 226, 180);
   }
+  
+  #LoginForm div button:active{
+      background-color: rgb(170, 128, 48);
+    }

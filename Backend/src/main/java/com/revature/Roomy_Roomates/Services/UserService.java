@@ -9,6 +9,8 @@ import com.revature.Roomy_Roomates.Models.User;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -140,6 +142,11 @@ public class UserService {
         userDAO.deleteById(givenUser.getUserId());
         return userSearch.get();
     }
+
+    public List<Hotel> getFavoritesForUser(String username) {
+        return userDAO.findFavoritesByUsername(username);
+    }
+    
 
     public User addHotelToFavorites(String username, int hotelId){
         Optional<User> possibleUser = userDAO.findUserByUsername(username);
