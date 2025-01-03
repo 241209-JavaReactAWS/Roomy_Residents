@@ -20,6 +20,8 @@ public class User {
 
     private String username;
     private String password;
+
+    @Enumerated(EnumType.ORDINAL)
     private Roles role;
 
     @Column(name = "first_name")
@@ -42,6 +44,7 @@ public class User {
     private Set<Hotel> favorites;
 
     public User() {
+        this.role = Roles.USER;
     }
 
     public User(Integer userId, Owner ownerId, String username, String password, String firstName, String lastName, String email, Date date, Set<Hotel> favorites, Roles role) {

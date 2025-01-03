@@ -115,7 +115,7 @@ public class HotelController{
     }
 
 
-    @GetMapping
+    @GetMapping("/filter")
     public List<Hotel> getHotelByFiltering( @RequestParam(name = "hotelName", required = false) String hotelName,
                                             @RequestParam(name = "rating", required = false) Integer rating,
                                             @RequestParam(name = "hotelCity", required = false) String hotelCity,

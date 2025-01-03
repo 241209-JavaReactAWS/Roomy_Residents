@@ -27,9 +27,9 @@ public class UserRegistrationLoginController {
     @PostMapping(value="login")
     public ResponseEntity loginAccount(@RequestBody User givenUser, HttpServletResponse servlet){
         try{
-            User resultUser = userService.getUserById(givenUser);
+            User resultUser = userService.getUserByUsername(givenUser.getUsername());
             if(userService.PasswordEquals(givenUser)){
-                Cookie cookie = new Cookie("Roomy_Residents_Id",Integer.toString(givenUser.getUserId()));
+                Cookie cookie = new Cookie("Roomy_Residents_Id",Integer.toString(resultUser.getUserId()));
                 cookie.setMaxAge(100000);
                 servlet.addCookie(cookie);
                 return ResponseEntity.status(HttpStatus.OK).body(resultUser);
@@ -63,7 +63,8 @@ public class UserRegistrationLoginController {
     @PostMapping(value="")
     public ResponseEntity removeLoginCookie(HttpServletResponse servlet){
         Cookie cookie = new Cookie("Roomy_Residents_Id",null);
-        cookie.setMaxAge(-1);
+        cookie.setMaxAge(0);
+        cookie.setPath("/userauth");
         servlet.addCookie(cookie);
         return ResponseEntity.status(HttpStatus.OK).body("Logged Out");
     }

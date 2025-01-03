@@ -6,11 +6,9 @@ import com.revature.Roomy_Roomates.Exceptions.*;
 import com.revature.Roomy_Roomates.Models.Hotel;
 import com.revature.Roomy_Roomates.Models.Roles;
 import com.revature.Roomy_Roomates.Models.User;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.security.SecureRandom;
 import java.util.Optional;
 import java.util.Set;
 
@@ -21,7 +19,6 @@ public class UserService {
     private Integer usernameMinLength = 4;
     private UserDAO userDAO;
     private HotelDAO hotelDAO;
-    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10,new SecureRandom());
 
     @Autowired
     public UserService(UserDAO userDAO) {
@@ -59,35 +56,29 @@ public class UserService {
         if(user.getFirstName().isEmpty()) throw new MissingInformation();
         if(user.getLastName().isEmpty()) throw new MissingInformation();
         if(user.getEmail().isEmpty()) throw new MissingInformation();
-        if(userDAO.findUserByUsername(user.getUsername().trim()).isEmpty()) throw new AlreadyExists();
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if(userDAO.findUserByUsername(user.getUsername().trim()).isPresent()) throw new AlreadyExists();
+        user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt(12)));
         return userDAO.save(user);
     }
 
     public Boolean PasswordEquals(String username, String password) throws NotInDatabase{
         try{
             User user = getUserByUsername(username);
-            String newPassword = bCryptPasswordEncoder.encode(password);
-            if(user.getPassword().equals(newPassword)){
-                return true;
-            }
+            boolean newPassword = BCrypt.checkpw(password,user.getPassword());
+            return newPassword;
         } catch (NotInDatabase e){
             throw new NotInDatabase();
         }
-        return false;
     }
 
     public Boolean PasswordEquals(User givenUser) throws NotInDatabase{
         try{
             User user = getUserByUsername(givenUser.getUsername());
-            String newPassword = bCryptPasswordEncoder.encode(givenUser.getPassword());
-            if(user.getPassword().equals(newPassword)){
-                return true;
-            }
+            boolean newPassword = BCrypt.checkpw(givenUser.getPassword(),user.getPassword());
+            return newPassword;
         } catch (NotInDatabase e){
             throw new NotInDatabase();
         }
-        return false;
     }
 
     public User updateUserInformationWithAuthentication(User givenUser) throws AlreadyExists,NotInDatabase, Unauthorized,ImproperFormat{

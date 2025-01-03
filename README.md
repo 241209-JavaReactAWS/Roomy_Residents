@@ -1,4 +1,13 @@
 # Roomy_Residents
+## Installation
+### Backend
+- Put in appropriate environmental variables to the database
+- Run RoomyRoomatesApplication.java
+### Frontend
+- Go to ./Frontend/Roomy_React
+- Enter `npm install` in cmd
+- Run main.tsx
+
 ## Endpoints
 - **POST** userauth/login
 - - Creates cookie upon creation and returns 200
