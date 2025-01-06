@@ -17,6 +17,13 @@ button:hover{
 button:active{
     background-color: rgb(170, 128, 48);
   }
+
+.ErrorText{
+  color: darkred;
+  flex-grow: 5;
+  max-width: 290px;
+  font-weight: 900;
+}
 /*
 .logo {
   height: 6em;

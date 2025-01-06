@@ -23,10 +23,6 @@ function App() {
             <Route path="/hotels/:hotelId" element={<Rooms />} />
           </Routes>
         </BrowserRouter>
-        <div>
-        <BookingPage/>
-        </div>
-      
     </>
   )
 }
