@@ -11,12 +11,12 @@ function SubmissionButton(props : EndpointProp) {
 
   function submit(){
     axios.post(props.endpoint,props.data == null ? props.data : {},{withCredentials:true})
-    .then((data : any) => {console.log("success")})
-    .catch((error) => {console.log("error")})
+    .then((data : any) => {props.statusChanger(0)})
+    .catch((error) => {props.statusChanger(1)})
   }
   
   return (
-    <button id='SubmitButton' className={state} onClick={submit}>{placeholder}</button>
+    <button id='SubmitButton' className={state} onClick={props.statusChanger(0)}>{placeholder}</button>
   )
 }
 

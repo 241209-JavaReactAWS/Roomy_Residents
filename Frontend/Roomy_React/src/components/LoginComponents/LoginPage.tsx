@@ -3,6 +3,7 @@ import TextInput from '../GlobalComponents/TextInput/TextInput'
 import SubmissionButton from '../GlobalComponents/SubmissionButton/SubmissionButton'
 import UserInterface from '../../interfaces/UserInterface'
 import "./LoginPage.css"
+import Supplementaries from '../../SupplementaryClass'
 
 function LoginPage() {
 
@@ -36,12 +37,12 @@ function LoginPage() {
                     <p>Enjoy your stay</p>
                 </div>
                 <div>
-                    <TextInput id="username_input" for="Username" onValueChange={setUsername}></TextInput>
-                    <TextInput id="password_input" for="Password" onValueChange={setPassword}></TextInput>
+                    <TextInput id="username_input" for="Username" onValueChange={setUsername} width='90%'></TextInput>
+                    <TextInput id="password_input" for="Password" onValueChange={setPassword} width='90%'></TextInput>
                 </div>
                 <div id='bottomOfLoginForm'>
                     <p className='ErrorText'>{status == 0 ? "" : "Invalid Username or Password"}</p>
-                    <SubmissionButton endpoint='test' statusChanger={setStatus} placeholder='Log In!'></SubmissionButton>
+                    <SubmissionButton endpoint='test' statusChanger={setStatus} placeholder='Log In!' data={Supplementaries.generateUserJson(NaN,username,password)}></SubmissionButton>
                 </div>
             </div>
         </div>

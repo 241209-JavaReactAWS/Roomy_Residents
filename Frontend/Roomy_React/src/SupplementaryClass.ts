@@ -18,3 +18,5 @@ class Supplementaries{
     }
 
 }
+
+export default Supplementaries
