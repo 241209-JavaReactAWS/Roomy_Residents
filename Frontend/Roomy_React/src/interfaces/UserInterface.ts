@@ -5,6 +5,7 @@ interface UserInterface{
     firstname ?: string,
     lastname ?: string,
     email ?: string,
+    address ?: string,
     birthday ?: Date,
 }
 

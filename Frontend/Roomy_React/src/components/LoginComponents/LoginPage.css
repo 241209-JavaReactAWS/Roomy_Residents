@@ -40,6 +40,7 @@
     animation-duration: 30s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    z-index: -1;
 }
 
 #LoginForm{
@@ -48,11 +49,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    border-width: 50px;
+    border-color: rgb(226, 157, 31);
+    border-style: outset;
 }
 
 #LoginForm div{
     width: 50rem;
-    margin-left: 50px;
+    margin-left: 120px;
 }
 
 #textInfo{
